@@ -28,4 +28,5 @@ func get_plugin_name() -> String:
 
 
 func get_plugin_icon() -> Texture:
-	return get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")
+	return get_editor_interface().get_base_control().get_icon("Node",
+			"EditorIcons")

@@ -10,16 +10,22 @@ func open_test_dir(test_dir_path: String) -> Directory:
 	return test_dir
 
 
-func process_elements(test_dir: Directory, test_dir_path: String, test_paths: Array) -> void:
+func process_element(element: String, test_dir: Directory,
+		test_dir_path: String, test_paths: Array) -> void:
+	var element_path := "%s/%s" % [test_dir_path, element]
+	if test_dir.current_is_dir():
+		get_tests_in_dir(element_path, test_paths)
+	else:
+		test_paths.append(element_path)
+
+
+func process_elements(test_dir: Directory, test_dir_path: String,
+		test_paths: Array) -> void:
 	while true:
 		var element := test_dir.get_next()
 		if not element:
 			break
-		var element_path := "%s/%s" % [test_dir_path, element]
-		if test_dir.current_is_dir():
-			get_tests_in_dir(element_path, test_paths)
-		else:
-			test_paths.append(element_path)
+		process_element(element, test_dir, test_dir_path, test_paths)
 
 
 func get_tests_in_dir(test_dir_path: String, test_paths: Array) -> void:
@@ -27,6 +33,7 @@ func get_tests_in_dir(test_dir_path: String, test_paths: Array) -> void:
 	test_dir.list_dir_begin(true, true)
 	process_elements(test_dir, test_dir_path, test_paths)
 	test_dir.list_dir_end()
+
 
 func get_tests() -> Array:
 	var test_paths := []
@@ -46,7 +53,8 @@ func add_tests() -> void:
 		add_test(test_path)
 
 
-func _export_begin(_features: PoolStringArray, is_debug: bool, _path: String, _flags: int) -> void:
+func _export_begin(_features: PoolStringArray, is_debug: bool, _path: String,
+		_flags: int) -> void:
 	if is_debug:
 		add_tests()
 
