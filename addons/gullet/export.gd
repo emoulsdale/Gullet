@@ -10,28 +10,29 @@ func open_test_dir(test_dir_path: String) -> Directory:
 	return test_dir
 
 
-func process_elements(test_dir: Directory, test_dir_path: String, test_paths: Array) -> Array:
+func process_elements(test_dir: Directory, test_dir_path: String, test_paths: Array):
 	while true:
 		var element := test_dir.get_next()
 		if not element:
 			break
 		var element_path := "%s/%s" % [test_dir_path, element]
 		if test_dir.current_is_dir():
-			test_paths = get_tests_in_dir(element_path, test_paths.duplicate())
+			get_tests_in_dir(element_path, test_paths)
 		else:
 			test_paths.append(element_path)
 	return test_paths
 
 
-func get_tests_in_dir(test_dir_path: String, test_paths: Array) -> Array:
+func get_tests_in_dir(test_dir_path: String, test_paths: Array):
 	var test_dir := open_test_dir(test_dir_path)
 	test_dir.list_dir_begin(true, true)
-	test_paths += process_elements(test_dir, test_dir_path, test_paths.duplicate())
+	test_paths += process_elements(test_dir, test_dir_path, test_paths)
 	test_dir.list_dir_end()
 	return test_paths
 
 func get_tests() -> Array:
-	var test_paths := get_tests_in_dir(root_test_dir, [])
+	var test_paths := []
+	get_tests_in_dir(root_test_dir, test_paths)
 	return test_paths
 
 
