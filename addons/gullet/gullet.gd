@@ -1,9 +1,11 @@
 tool
 extends EditorPlugin
 
+var export_plugin: EditorExportPlugin
+
 
 func setup_export_plugin() -> void:
-	var export_plugin: EditorExportPlugin = preload("export.gd").new()
+	export_plugin = preload("export.gd").new()
 	add_export_plugin(export_plugin)
 
 
@@ -12,7 +14,7 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
-	pass
+	remove_export_plugin(export_plugin)
 
 
 func has_main_screen() -> bool:
