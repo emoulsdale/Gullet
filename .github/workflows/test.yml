@@ -1,0 +1,20 @@
+name: CI Test
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get the godot engine
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/3.2.2/Godot_v3.2.2-stable_linux_headless.64.zip
+          unzip Godot_v3.2.2-stable_linux_headless.64.zip
+          mv Godot_v3.2.2-stable_linux_headless.64/Godot_v3.2.2-stable_linux_headless.64 godot
+
+      - name: Run ci.gd
+        run: godot -s $GITHUB_WORKSPACE/ci.gd
