@@ -27,15 +27,20 @@ func _init() -> void:
 func dispose_logger() -> void:
 	runner.disconnect("test_failed", logger, "log_failure")
 	runner.disconnect("test_succeeded", logger, "log_success")
+	logger.dispose()
 	logger.queue_free()
 
 
-func _exit_tree() -> void:
+func dispose() -> void:
 	if logger:
 		dispose_logger()
 	if runner:
 		runner.queue_free()
 
+
+func _exit_tree() -> void:
+	dispose()
+	
 
 func run_all_tests() -> void:
 	var test_file_paths: Array = UTILS.get_test_file_paths()

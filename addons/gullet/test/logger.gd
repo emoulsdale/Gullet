@@ -2,11 +2,21 @@ tool
 extends Node
 
 var test_results: Dictionary = {}
+var printer: Node
 
 enum TestResult {
 	SUCCESS,
 	FAILURE
 }
+
+
+func _init() -> void:
+	# TODO refactor to use dependency injection
+	printer = preload("res://addons/gullet/test/printer.gd").new()
+
+
+func dispose() -> void:
+	printer.queue_free()
 
 
 func reset_log() -> void:
@@ -24,16 +34,10 @@ func add_test_method_result(test_file_path: String, test_method: String,
 func log_failure(test_file_path: String, test_method: String,
 		failure_string: String) -> void:
 	add_test_method_result(test_file_path, test_method, TestResult.FAILURE)
-	print("FAILED - Test method '%s' of file '%s': %s" % [
-		test_method,
-		test_file_path,
-		failure_string
-	])
+	printer.print_failure(test_file_path, test_method, failure_string)
+
 
 
 func log_success(test_file_path: String, test_method: String) -> void:
 	add_test_method_result(test_file_path, test_method, TestResult.SUCCESS)
-	print("PASSED - Test method '%s' of file '%s'" % [
-		test_method,
-		test_file_path
-	])
+	printer.print_success(test_file_path, test_method)
