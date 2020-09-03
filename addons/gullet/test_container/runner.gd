@@ -25,8 +25,7 @@ func get_script_methods(script_file: Node) -> Array:
 
 
 func get_excluded_script_methods() -> Array:
-	# this is VERY fragile, refactor!!!
-	var test_utility_file: Node = preload("../test.gd").new()
+	var test_utility_file: Node = Test.new()
 	var excluded_script_methods := get_script_methods(test_utility_file)
 	test_utility_file.queue_free()
 	return excluded_script_methods

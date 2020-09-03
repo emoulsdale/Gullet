@@ -36,7 +36,6 @@ func _exit_tree() -> void:
 
 
 func run_all_tests() -> void:
-	# TODO refactor this to use signals!!!!
 	var utils: Reference = preload("res://addons/gullet/utils.gd")
 	var test_files: Array = utils.get_test_files()
 	runner.run_all_tests(test_files)
