@@ -1,9 +1,10 @@
 extends SceneTree
 
+
 func _init():
-	# this is VERY broken
-	var gullet: EditorPlugin = preload("res://addons/gullet/gullet.gd").new()
 	var utils: Reference = preload("res://addons/gullet/utils.gd")
 	var test_files: Array = utils.get_test_files()
-	gullet.queue_free()
+	var test_container: Node = preload("test_container/container.gd").new()
+	test_container.run_all_tests()
+	test_container.queue_free()
 	quit()

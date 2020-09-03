@@ -1,5 +1,4 @@
 tool
-class_name TestContainer
 extends Node
 
 var runner: Node
@@ -29,7 +28,7 @@ func dispose_logger() -> void:
 	logger.queue_free()
 
 
-func dispose() -> void:
+func _exit_tree() -> void:
 	if logger:
 		dispose_logger()
 	if runner:
@@ -37,7 +36,7 @@ func dispose() -> void:
 
 
 func run_all_tests() -> void:
-	# refactor this to use signals!!!!
+	# TODO refactor this to use signals!!!!
 	var utils: Reference = preload("res://addons/gullet/utils.gd")
 	var test_files: Array = utils.get_test_files()
 	runner.run_all_tests(test_files)
