@@ -17,4 +17,4 @@ jobs:
           mv Godot_v3.2.2-stable_linux_headless.64 godot
 
       - name: Run ci.gd
-        run: godot -s $GITHUB_WORKSPACE/ci.gd
+        run: ./godot -s $GITHUB_WORKSPACE/ci.gd
