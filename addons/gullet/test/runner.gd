@@ -2,6 +2,7 @@ tool
 extends Node
 
 const TESTS = [IntegrationTest, UnitTest]
+const UTILS = preload("res://addons/gullet/utils.gd")
 
 signal processing_finished
 signal test_failed(test_file_path, test_method, failure_string)
@@ -26,6 +27,15 @@ func get_method_names(node: Node) -> Array:
 	return method_names
 
 
+func get_extended_test(test_file: Node) -> Node:
+	for test in TESTS:
+		if test_file is test:
+			return test.new()
+	# something has gone wrong
+	push_error("A test file does not extend a test format!")
+	return Node.new()
+
+
 func get_test_methods(test_file: Node, extended_test: Node) -> Array:
 	var test_methods := []
 	var excluded_methods := get_method_names(extended_test)
@@ -45,16 +55,17 @@ func process_test_result(failure_string: String) -> void:
 	emit_signal("processing_finished")
 
 
-func run_tests_in_file(test_file_path: String, extended_test: Node) -> void:
-	var test_file = load(test_file_path).new()
+func run_tests_in_file(test_file_path: String) -> void:
+	var test_file: Node = load(test_file_path).new()
+	var extended_test := get_extended_test(test_file)
 	test_file.connect("test_completed", self, "process_test_result")
 	for test_method in get_test_methods(test_file, extended_test):
 		run_test(test_file, test_file_path, test_method)
+	extended_test.queue_free()
 	test_file.disconnect("test_completed", self, "process_test_result")
 	test_file.queue_free()
 
 
-func run_all_tests(test_file_paths: Array) -> void:
-	var unit_test_instance := UnitTest.new()
-	run_tests_in_file("res://test/unit/unit.gd", unit_test_instance)
-	unit_test_instance.queue_free()
+func run_all_tests(test_files_paths: Array) -> void:
+	for test_file_path in test_files_paths:
+		run_tests_in_file(test_file_path)

@@ -4,6 +4,8 @@ extends Node
 var runner: Node
 var logger: Node
 
+const UTILS = preload("res://addons/gullet/utils.gd")
+
 
 func setup_runner() -> void:
 	runner = preload("runner.gd").new()
@@ -36,6 +38,5 @@ func _exit_tree() -> void:
 
 
 func run_all_tests() -> void:
-	var utils: Reference = preload("res://addons/gullet/utils.gd")
-	var test_files: Array = utils.get_test_files()
-	runner.run_all_tests(test_files)
+	var test_file_paths: Array = UTILS.get_test_file_paths()
+	runner.run_all_tests(test_file_paths)

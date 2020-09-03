@@ -29,6 +29,10 @@ _global_script_class_icons={
 config/name="Gullet"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/exclude_addons=false
+
 [editor_plugins]
 
 enabled=PoolStringArray( "gullet" )

@@ -1,7 +1,8 @@
 tool
 extends EditorExportPlugin
 
-const utils = preload("res://addons/gullet/utils.gd") 
+#TODO refactor utils into test directory
+const UTILS = preload("res://addons/gullet/utils.gd")
 
 
 func add_test_file(test_path: String) -> void:
@@ -10,7 +11,9 @@ func add_test_file(test_path: String) -> void:
 
 
 func add_test_files() -> void:
-	var test_file_paths: Array = utils.get_test_files()
+	# TODO refactor this using dependency injection
+	# i.e. NO hard coding
+	var test_file_paths: Array = UTILS.get_test_files()
 	print("Found %d test files." % len(test_file_paths))
 	for test_path in test_file_paths:
 		add_test_file(test_path)
