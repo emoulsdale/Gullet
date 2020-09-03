@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "UnitTest",
+"class": "IntegrationTest",
+"language": "GDScript",
+"path": "res://addons/gullet/class/integration_test.gd"
+}, {
+"base": "Node",
+"class": "UnitTest",
+"language": "GDScript",
+"path": "res://addons/gullet/class/unit_test.gd"
+} ]
+_global_script_class_icons={
+"IntegrationTest": "",
+"UnitTest": ""
+}
+
+[application]
+
+config/name="Gullet"
+config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/exclude_addons=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "gullet" )
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
