@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "Test",
+"language": "GDScript",
+"path": "res://addons/gullet/test.gd"
+}, {
+"base": "Node",
+"class": "TestContainer",
+"language": "GDScript",
+"path": "res://addons/gullet/test_container/test_container.gd"
+} ]
 _global_script_class_icons={
-
+"Test": "",
+"TestContainer": ""
 }
 
 [application]

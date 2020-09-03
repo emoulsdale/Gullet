@@ -10,7 +10,6 @@ func add_test_file(test_path: String) -> void:
 
 
 func add_test_files(test_file_paths: Array) -> void:
-	
 	print("Found %d test files." % len(test_file_paths))
 	for test_path in test_file_paths:
 		add_test_file(test_path)

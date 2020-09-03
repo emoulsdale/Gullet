@@ -14,7 +14,8 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
-	remove_export_plugin(export_plugin)
+	if export_plugin:
+		remove_export_plugin(export_plugin)
 
 
 func has_main_screen() -> bool:

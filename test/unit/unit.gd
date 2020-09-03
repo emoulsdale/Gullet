@@ -1,4 +1,4 @@
-extends "res://addons/gullet/test.gd"
+extends Test
 
 
 # this should fail
