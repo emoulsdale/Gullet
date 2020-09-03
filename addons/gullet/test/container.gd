@@ -42,6 +42,7 @@ func _exit_tree() -> void:
 	dispose()
 	
 
-func run_all_tests() -> void:
+func run_all_tests() -> bool:
 	var test_file_paths: Array = UTILS.get_test_file_paths()
 	runner.run_all_tests(test_file_paths)
+	return logger.testing_failed
