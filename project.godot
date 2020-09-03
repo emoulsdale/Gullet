@@ -9,13 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "Test",
+"base": "UnitTest",
+"class": "IntegrationTest",
 "language": "GDScript",
-"path": "res://addons/gullet/test.gd"
+"path": "res://addons/gullet/class/integration_test.gd"
+}, {
+"base": "Node",
+"class": "UnitTest",
+"language": "GDScript",
+"path": "res://addons/gullet/class/unit_test.gd"
 } ]
 _global_script_class_icons={
-"Test": ""
+"IntegrationTest": "",
+"UnitTest": ""
 }
 
 [application]

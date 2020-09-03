@@ -8,8 +8,8 @@ export_presets.cfg
 .mono/
 data_*/
 
-# export directory
-export/
+# directory for exported projects
+/export/
 
 # vscode
 .vscode/

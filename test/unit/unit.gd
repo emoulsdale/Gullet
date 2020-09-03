@@ -1,4 +1,4 @@
-extends Test
+extends UnitTest
 
 
 # this should fail

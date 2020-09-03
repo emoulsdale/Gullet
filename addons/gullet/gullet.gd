@@ -5,7 +5,7 @@ var export_plugin: EditorExportPlugin
 
 
 func setup_export_plugin() -> void:
-	export_plugin = preload("export.gd").new()
+	export_plugin = preload("res://addons/gullet/export/export.gd").new()
 	add_export_plugin(export_plugin)
 
 

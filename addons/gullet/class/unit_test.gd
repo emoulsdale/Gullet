@@ -1,7 +1,6 @@
-class_name Test
-extends Node
+class_name UnitTest
+extends "res://addons/gullet/class/base_test.gd"
 
-signal test_completed(failure_string)
 
 func assert_eq(int1: int, int2: int) -> void:
 	if int1 == int2:
