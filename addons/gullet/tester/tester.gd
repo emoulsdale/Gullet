@@ -4,7 +4,7 @@ extends Node
 var runner: Node
 var logger: Node
 
-const UTILS = preload("res://addons/gullet/utils.gd")
+const FINDER = preload("res://addons/gullet/tester/finder.gd")
 
 
 func setup_runner() -> void:
@@ -15,7 +15,7 @@ func setup_runner() -> void:
 func setup_logger() -> void:
 	logger = preload("logger.gd").new()
 	runner.connect("test_failed", logger, "log_failure")
-	runner.connect("test_succeeded", logger, "log_success")
+	runner.connect("test_passed", logger, "log_pass")
 	add_child(logger)
 
 
@@ -26,7 +26,7 @@ func _init() -> void:
 
 func dispose_logger() -> void:
 	runner.disconnect("test_failed", logger, "log_failure")
-	runner.disconnect("test_succeeded", logger, "log_success")
+	runner.disconnect("test_passed", logger, "log_pass")
 	logger.dispose()
 	logger.queue_free()
 
@@ -43,6 +43,6 @@ func _exit_tree() -> void:
 	
 
 func run_all_tests() -> bool:
-	var test_file_paths: Array = UTILS.get_test_file_paths()
+	var test_file_paths: Array = FINDER.get_test_file_paths()
 	runner.run_all_tests(test_file_paths)
 	return logger.testing_failed

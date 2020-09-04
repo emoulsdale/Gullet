@@ -1,4 +1,4 @@
-extends UnitTest
+extends "res://addons/gullet/test.gd"
 
 
 # this should fail
