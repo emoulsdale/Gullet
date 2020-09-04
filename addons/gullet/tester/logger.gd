@@ -13,7 +13,7 @@ enum TestResult {
 
 func _init() -> void:
 	# TODO refactor to use dependency injection
-	printer = preload("res://addons/gullet/test/printer.gd").new()
+	printer = preload("res://addons/gullet/tester/printer.gd").new()
 
 
 func dispose() -> void:

@@ -1,5 +1,6 @@
-class_name UnitTest
-extends "res://addons/gullet/class/base_test.gd"
+extends Node
+
+signal test_completed(failure_string)
 
 
 func assert_eq(int1: int, int2: int) -> void:

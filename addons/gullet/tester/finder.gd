@@ -1,7 +1,7 @@
 tool
 
-const root_test_dir = "res://test"
-const base_test = preload("res://addons/gullet/class/base_test.gd")
+const ROOT_TEST_DIR = "res://test"
+const BASE_TEST_FILE = preload("res://addons/gullet/test.gd")
 
 
 static func open_test_dir(test_dir_path: String) -> Directory:
@@ -12,7 +12,7 @@ static func open_test_dir(test_dir_path: String) -> Directory:
 
 static func is_test_file(file_path: String) -> bool:
 	var test_file = load(file_path).new()
-	var is_test_file := (test_file is base_test)
+	var is_test_file := (test_file is BASE_TEST_FILE)
 	test_file.queue_free()
 	return is_test_file
 
@@ -47,5 +47,5 @@ static func get_test_files_in_dir(test_dir_path: String,
 
 static func get_test_file_paths() -> Array:
 	var test_file_paths := []
-	get_test_files_in_dir(root_test_dir, test_file_paths)
+	get_test_files_in_dir(ROOT_TEST_DIR, test_file_paths)
 	return test_file_paths

@@ -4,7 +4,7 @@ extends Node
 var runner: Node
 var logger: Node
 
-const UTILS = preload("res://addons/gullet/utils.gd")
+const FINDER = preload("res://addons/gullet/tester/finder.gd")
 
 
 func setup_runner() -> void:
@@ -43,6 +43,6 @@ func _exit_tree() -> void:
 	
 
 func run_all_tests() -> bool:
-	var test_file_paths: Array = UTILS.get_test_file_paths()
+	var test_file_paths: Array = FINDER.get_test_file_paths()
 	runner.run_all_tests(test_file_paths)
 	return logger.testing_failed

@@ -1,11 +1,11 @@
 extends SceneTree
 
-const test_container_path= "res://addons/gullet/test/container.gd"
+const TESTER_PATH = "res://addons/gullet/tester/tester.gd"
 
 
 func _init():
-    var test_container: Node = preload(test_container_path).new()
-    test_container.run_all_tests()
-    test_container.dispose()
-    test_container.queue_free()
+    var tester: Node = preload(TESTER_PATH).new()
+    tester.run_all_tests()
+    tester.dispose()
+    tester.queue_free()
     quit()
