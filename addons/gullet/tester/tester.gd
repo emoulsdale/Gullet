@@ -15,7 +15,7 @@ func setup_runner() -> void:
 func setup_logger() -> void:
 	logger = preload("logger.gd").new()
 	runner.connect("test_failed", logger, "log_failure")
-	runner.connect("test_succeeded", logger, "log_success")
+	runner.connect("test_passed", logger, "log_pass")
 	add_child(logger)
 
 
@@ -26,7 +26,7 @@ func _init() -> void:
 
 func dispose_logger() -> void:
 	runner.disconnect("test_failed", logger, "log_failure")
-	runner.disconnect("test_succeeded", logger, "log_success")
+	runner.disconnect("test_passed", logger, "log_pass")
 	logger.dispose()
 	logger.queue_free()
 

@@ -1,13 +1,13 @@
 tool
 extends Node
 
-var test_results: Dictionary = {}
+var test_results := {}
 var printer: Node
 var testing_failed := false
 
 enum TestResult {
-	SUCCESS,
-	FAILURE
+	PASS,
+	FAIL
 }
 
 
@@ -35,11 +35,11 @@ func add_test_method_result(test_file_path: String, test_method: String,
 func log_failure(test_file_path: String, test_method: String,
 		failure_string: String) -> void:
 	testing_failed = true
-	add_test_method_result(test_file_path, test_method, TestResult.FAILURE)
+	add_test_method_result(test_file_path, test_method, TestResult.FAIL)
 	printer.print_failure(test_file_path, test_method, failure_string)
 
 
 
-func log_success(test_file_path: String, test_method: String) -> void:
-	add_test_method_result(test_file_path, test_method, TestResult.SUCCESS)
-	printer.print_success(test_file_path, test_method)
+func log_pass(test_file_path: String, test_method: String) -> void:
+	add_test_method_result(test_file_path, test_method, TestResult.PASS)
+	printer.print_pass(test_file_path, test_method)
