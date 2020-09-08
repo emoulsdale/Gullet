@@ -5,6 +5,7 @@ const TESTER_PATH = "res://addons/gullet/tester/tester.gd"
 
 func _init():
 	var tester: Node = preload(TESTER_PATH).new()
+	tester.set_formatter(preload("formatter.gd").new())
 	var failed: bool = tester.run_all_tests()
 	tester.dispose()
 	tester.queue_free()

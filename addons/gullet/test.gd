@@ -3,8 +3,6 @@ extends Node
 # TODO refactor order of members to be consistent with gdscript guidelines
 var runner: Node
 
-# TODO refactor to use xUnit classnames
-
 
 func _report_pass() -> void:
 	# TODO should this _if_ statement be here?

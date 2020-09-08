@@ -31,7 +31,7 @@ func _yellow_text(text: String) -> String:
     return _color_text(text, ANSI_YELLOW)
 
 
-func print_failure(test_file_path: String, test_method: String,
+func format_failure(test_file_path: String, test_method: String,
 failure_string: String) -> void:
     print("%s -> '%s' of '%s': %s" % [
         _red_text("FAIL"),
@@ -41,7 +41,7 @@ failure_string: String) -> void:
     ])
 
 
-func print_pass(test_file_path: String, test_method: String) -> void:
+func format_pass(test_file_path: String, test_method: String) -> void:
     print("%s -> '%s' of '%s'" % [
         _green_text("PASS"),
 		test_method,
